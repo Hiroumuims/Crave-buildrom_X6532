@@ -19,7 +19,7 @@ echo "Master the Sync is now Success"
 echo "=============================="
 
 # Sync Trees
-git clone https://github.com/chongkessob/device_infinix_X6532.git -b main device/infinix/X6532
+git clone https://github.com/Hiroumuims/device_infinix_X6532.git -b main device/infinix/X6532
 git clone https://github.com/chongkessob/vendor_infinix_X6532.git -b main vendor/infinix/X6532
 
 #keys 
@@ -34,7 +34,7 @@ cd ../../../..
 echo "Success"
 
 # Lunch
-lunch lineage_X6532-userdebug
+lunch rising_X6532-userdebug
 echo "============"
 echo "Starting...."
 echo "============"
