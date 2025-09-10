@@ -1,0 +1,43 @@
+#!/bin/bash
+
+echo "Build Started"
+# Accounts
+git config --global user.name "Hiroumuims"
+git config --global user.email "hello@gmail.com"
+
+
+# repo init rom
+repo init -u https://github.com/LineageOS/android.git -b lineage-19.1 --git-lfs
+echo "========================="
+echo "Repo init success Master"
+echo "========================="
+
+# Build Sync
+/opt/crave/resync.sh
+echo "=============================="
+echo "Master the Sync is now Success"
+echo "=============================="
+
+# Sync Trees
+git clone https://github.com/chongkessob/device_infinix_X6532.git -b main device/infinix/X6532
+git clone https://github.com/chongkessob/vendor_infinix_X6532.git -b main vendor/infinix/X6532
+
+#keys 
+mkdir -p device/infinix/X6532/keys
+cd device/infinix/X6532/keys
+openssl genrsa -out releasekey.pk8 2048
+openssl req -new -x509 -key releasekey.pk8 -out releasekey.x509.pem -days 10000 -subj "/CN=Build/"
+cd ../../../..
+
+# Setup the build environment 
+. build/envsetup.sh
+echo "Success"
+
+# Lunch
+lunch lineage_X6532-userdebug
+echo "============"
+echo "Starting...."
+echo "============"
+
+# Build
+brunch X6532
