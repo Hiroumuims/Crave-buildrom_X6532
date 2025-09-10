@@ -22,22 +22,16 @@ echo "=============================="
 git clone https://github.com/Hiroumuims/device_infinix_X6532.git -b main device/infinix/X6532
 git clone https://github.com/chongkessob/vendor_infinix_X6532.git -b main vendor/infinix/X6532
 
-#keys 
-mkdir -p device/infinix/X6532/keys
-cd device/infinix/X6532/keys
-openssl genrsa -out releasekey.pk8 2048
-openssl req -new -x509 -key releasekey.pk8 -out releasekey.x509.pem -days 10000 -subj "/CN=Build/"
-cd ../../../..
 
 # Setup the build environment 
 . build/envsetup.sh
 echo "Success"
 
-# Lunch
-lunch rising_X6532-userdebug
+# riseup
+riseup rising_X6532-userdebug
 echo "============"
 echo "Starting...."
 echo "============"
 
 # Build
-brunch X6532
+mka bacon
